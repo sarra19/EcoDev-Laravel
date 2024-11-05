@@ -8,6 +8,7 @@ use App\Http\Controllers\RecyclingCenterController;
 use App\Http\Controllers\DistributionController;
 use App\Http\Controllers\SalesCenterController;
 use App\Http\Controllers\RecycledProductController;
+use App\Http\Controllers\UserController;
 
 use App\Http\Controllers\DeliveryAgenceController;
 
@@ -358,3 +359,12 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/recycled-product
 
 Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/sales-center/{id}/recycled-products/statistics', [RecycledProductController::class, 'showStatistics'])->name('recycledProducts.statistics');
 Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/salesCenters/map/{id}', [SalesCenterController::class, 'showMap'])->name('salesCenters.map');
+
+
+Route::get('users', [UserController::class, 'index'])->name('users.index');          // Get all users
+Route::post('users', [UserController::class, 'store'])->name('users.store');         // Create a new user
+Route::get('showusers/{id}', [UserController::class, 'show'])->name('showuser');       // Get a single user by ID
+Route::put('users/{id}', [UserController::class, 'update'])->name('users.update');   // Update user information
+Route::get('users/{id}', [UserController::class, 'edit'])->name('users.edit');   // Update user information
+Route::delete('users/{id}', [UserController::class, 'destroy'])->name('users.destroy'); // Delete a user
+Route::get('/createusers', [UserController::class, 'create'])->name('userCreate');
